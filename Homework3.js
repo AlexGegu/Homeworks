@@ -81,25 +81,58 @@ console.log(`ჩვენს მარაგში არსებული ყ�
 
 
 // 2)
-    // let username = "alex888";
-    // let password = "1888"
 
-    // let user1 = {
-    //     username = "giorgi95",
-    //     password = "12345678"
-    // }
+    let user1 = {
+        username : "giorgi95",
+        password : "12345678"
+    };
 
-    // let user2 = {
-    //     username = "ana82",
-    //     password = "geolab1"
-    // }
+    let user2 = {
+        username : "ana82",
+        password : "geolab1"
+    };
 
-    // let user3 = {
-    //     username = "mari2020",
-    //     password = "123asd5"
-    // }
+    let user3 = {
+        username : "mari2020",
+        password : "123asd5"
+    };
 
-    // let user4 = {
-    //     username = "dato63",
-    //     password = "qwerty99"
-    // }
+    let user4 = {
+        username : "dato63",
+        password : "qwerty99"
+    };
+
+let users = [user1, user2, user3, user4];
+
+function  getFoundUser (users, possibleUsername) {
+    for (let i=0; i < users.length; i++) {
+        if (users[i].username === possibleUsername) {
+            return users[i];
+        }
+    }
+}
+
+function checkPassword (user, possiblePassword) {
+    return user.password === possiblePassword;
+}     
+
+function login (username, password) {
+    let possibleUser = getFoundUser (users, username);
+if (!possibleUser) {
+    console.log ("მოცემული სახელით მომხმარებელი არ მოიძებნა");
+}    else if  (checkPassword (possibleUser, password) && isPasswordStrong (password)) {
+    console.log ("წარმატებით შეხვედით სისტემაში");
+    
+}   else if (checkPassword (possibleUser, password) && !isPasswordStrong (password)) {
+    console.log ("წარმატებით შეხვედით სისტემაში, თუმცა გთხოვთ შეცვალოთ პაროლი")
+}
+
+else console.log ("პაროლი არასწორია")
+}
+
+
+ function isPasswordStrong (password) {
+     return password.length >= 8;     
+ }
+
+ login ("ana82", "geolab1");
